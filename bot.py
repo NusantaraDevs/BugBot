@@ -17,5 +17,6 @@ async def help(client, message):
 	await message.reply("You can add command list at @BotFather")
 	await message.reply("With add /setting or /help will bring new menu called 'Settings' or 'Help' in bot PM")
 	await message.reply("Give a try!")
+	raise TypeError
 
 bot.run()
