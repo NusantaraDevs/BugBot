@@ -30,7 +30,6 @@ async def randomint(client, message):
 
 @bot.on_message(filters.command(["randomstr"]))
 async def randomstr(client, message):
-	# Random string with the combination of lower and upper case
 	length = 8
 	letters = string.ascii_letters
 	result_str = ''.join(random.choice(letters) for i in range(length))
