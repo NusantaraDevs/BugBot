@@ -1,4 +1,4 @@
-import pyrogram, random
+import pyrogram, random, time
 from pyrogram import Client, filters
 
 api_id = 123456
@@ -27,5 +27,13 @@ async def random(client, message):
 	ran = random.randint(1, 100)
 	await message.reply("Here is a random number: " + ran)
 	raise Error(ran)
+
+@app.on_message(Filters.command(["ping"]))
+async def ping(client, message):
+	start_time = time.time()
+	await message.edit("🏓 Pong!")
+	end_time = time.time()
+	ping_time = float(end_time - start_time)
+	await message.edit("🏓 Pong!\n⏱ Speed was : {0:.2f}s".format(round(ping_time, 2) % 60))
 
 bot.run()
