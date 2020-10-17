@@ -1,4 +1,4 @@
-import pyrogram, random, time
+import pyrogram, random, time, string
 from pyrogram import Client, filters
 
 api_id = 123456
@@ -22,11 +22,19 @@ async def help(client, message):
 	await message.reply("Give a try!")
 	raise Error("You ask about help?")
 
-@bot.on_message(filters.command(["random"]))
-async def random(client, message):
+@bot.on_message(filters.command(["randomint"]))
+async def randomint(client, message):
 	ran = random.randint(1, 100)
 	await message.reply("Here is a random number: " + ran)
 	raise Error(ran)
+
+@bot.on_message(filters.command(["randomstr"]))
+async def randomstr(client, message):
+	# Random string with the combination of lower and upper case
+	length = 8
+	letters = string.ascii_letters
+	result_str = ''.join(random.choice(letters) for i in range(length))
+	await message.reply("Random string is:", result_str)
 
 @app.on_message(Filters.command(["ping"]))
 async def ping(client, message):
